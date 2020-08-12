@@ -1,8 +1,5 @@
 from django.http import JsonResponse, HttpResponseBadRequest
-
 from meters.models import Meter
-
-# Create your views here.
 
 def update_user_info(request):
     ''' 
@@ -17,13 +14,14 @@ def update_user_info(request):
 
     # Check if the user is authentic
     try:
-        if (user := Meter.objects.get(meter_token=token)):
-            # Do the business process
-            user.customer_balance -= int(usage)
-            user.save()
-            return JsonResponse({
-                "balance": user.customer_balance
-            }, status=200)
+        if (user := Meter.objects.get(meter_id=meter_id)):
+            if user and user.meter_token == token:
+                # Do the business process
+                user.customer_balance -= int(usage)
+                user.save()
+                return JsonResponse({
+                    "balance": user.customer_balance
+                }, status=200)
         else:
             JsonResponse({
                 'message' : "Invalid authentication details"

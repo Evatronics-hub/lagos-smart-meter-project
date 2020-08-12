@@ -44,7 +44,6 @@ class UserManager(BaseUserManager):
         Creates and saves a superuser with the given email and password.
         """
 
-
         user = self.create_user(
             name=name,
             email=email,
@@ -58,8 +57,6 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-
-
     username_validator = UnicodeUsernameValidator()
 
     name = models.CharField(

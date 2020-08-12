@@ -1,7 +1,7 @@
 from django.urls import path, include
 
-from .views import (
-    MeterAPIView, MeterRetrieveAPIView
+from .api import (
+    MeterAPIView, MeterRetrieveAPIView,
 )
 
 urlpatterns = [
