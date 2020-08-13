@@ -7,3 +7,10 @@ class MeterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Meter
         fields = ('user', 'meter_id', 'customer_balance', )
+    
+class UpdateMeterSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Meter
+        fields = ('user', 'meter_id', 'customer_balance', )
+        extra_kwargs = {'user' : {'read_only' : True } }

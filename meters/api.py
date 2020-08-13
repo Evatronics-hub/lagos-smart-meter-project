@@ -6,6 +6,7 @@ from rest_framework import permissions
 
 from .serializers import (
     MeterSerializer, 
+    UpdateMeterSerializer
 )
 
 class MeterAPIView(generics.ListCreateAPIView):
@@ -17,4 +18,4 @@ class MeterAPIView(generics.ListCreateAPIView):
 
 class MeterRetrieveAPIView(generics.RetrieveUpdateAPIView):
     queryset = Meter.objects.all()
-    serializer_class = MeterSerializer
+    serializer_class = UpdateMeterSerializer
