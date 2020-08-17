@@ -70,48 +70,41 @@ class User(AbstractBaseUser):
         max_length=255,
     )
     active = models.BooleanField(default=True)
-    staff = models.BooleanField(default=False) # a admin user; non super-user
-    admin = models.BooleanField(default=False) # a superuser
-    # notice the absence of a "Password field", that is built in.
+    staff = models.BooleanField(default=False)
+    stake_holder = models.BooleanField(default=False)
+    admin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'name'
     EMAIL_FIELD = 'email'
-    REQUIRED_FIELDS = ['email'] # Email & Password are required by default.
+    REQUIRED_FIELDS = ['email']
 
     objects = UserManager()
 
     def get_full_name(self):
-        # The user is identified by their name address
         return self.name
 
     def get_short_name(self):
-        # The user is identified by their name address
         return self.name
 
-    def __str__(self):              # __unicode__ on Python 2
+    def __str__(self):
         return self.name
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
         return True
 
     def has_module_perms(self, app_label):
         "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
         return True
 
     @property
     def is_staff(self):
-        "Is the user a member of staff?"
         return self.staff
 
     @property
     def is_admin(self):
-        "Is the user a admin member?"
         return self.admin
 
     @property
     def is_active(self):
-        "Is the user active?"
         return self.active

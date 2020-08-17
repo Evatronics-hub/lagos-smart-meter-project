@@ -22,6 +22,12 @@ AUTH_USER_MODEL = 'users.User'
 
 # Application definition
 INSTALLED_APPS = [
+    # 3rd party
+    'rest_framework',
+    'knox',
+    'channels',
+
+    # Default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -29,12 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 3rd party
-    'rest_framework',
-    'knox',
-
     # project's apps
     'frontend',
+    'iot',
+    'websockets',
     'meters',
     'users',
 ]
@@ -50,6 +54,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'lagossmartproject.urls'
+ASGI_APPLICATION = 'lagossmartproject.routing.application'
 
 TEMPLATES = [
     {
@@ -67,10 +72,10 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'lagossmartproject.wsgi.application'
+# WSGI_APPLICATION = 'lagossmartproject.wsgi.application'
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': 
-    ('rest_framework.permissions.IsAuthenticated', ),
+    # 'DEFAULT_PERMISSION_CLASSES': 
+    # ('rest_framework.permissions.IsAuthenticated', ),
     'DEFAULT_AUTHENTICATION_CLASSES':
     ('knox.auth.TokenAuthentication', )
 }

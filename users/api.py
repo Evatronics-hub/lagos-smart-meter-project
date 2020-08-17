@@ -18,9 +18,9 @@ class UserListAPI(generics.ListAPIView):
     name = 'Users List'
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
-    permission_classes = [
-        permissions.IsAdminUser,
-    ]
+    # permission_classes = [
+    #     permissions.IsAdminUser,
+    # ]
 
 
 class UserDetailAPI(generics.RetrieveUpdateAPIView):
@@ -28,9 +28,9 @@ class UserDetailAPI(generics.RetrieveUpdateAPIView):
     name = 'User Detail'
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
-    permission_classes = [
-        permissions.IsAuthenticated,
-    ]
+    # permission_classes = [
+    #     permissions.IsAuthenticated,
+    # ]
 
 
 class UserRegisterAPI(generics.GenericAPIView):
