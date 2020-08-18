@@ -1,60 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <!-- <h3 class="text-center mb-3">Hello World</h3> -->
-<div class="card mb-3">
-    <div class="card-body">
-        <div class="text-center lead mb-2">Hello World</div>
-        <canvas id="myChart" height="150"></canvas>
-        <div class="row">
-            <div class="col-6">
-                <div class="alert alert-secondary text-center" role="alert">
-                    Hello World
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="alert alert-secondary text-center" role="alert">
-                    From Node JS
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+  <div class="text-center lead mb-2">Hello World</div>
+  <canvas id="myChart" height="150"></canvas>
+  <div class="row">
+      <div class="col-6">
+          <div class="alert alert-secondary text-center" role="alert">
+              Hello World
+          </div>
+      </div>
+      <div class="col-6">
+          <div class="alert alert-secondary text-center" role="alert">
+              From Node JS
+          </div>
+      </div>
+  </div>
 {% endblock %}
 
 {% block script %}
-<script>
-// var ctx = $("#myChart").get(0).getContext("2d");
-//This will get the first returned node in the jQuery collection.
-var config = {
-  type: 'line',
-  data: {
-    datasets: [{
-      data: [17, 45, 19, 57, 250],
-	  fillColor : "rgba(220,220,220,0.5)",
-	  strokeColor : "rgba(220,220,220,1)",
-	  pointColor : "rgba(220,220,220,1)",
-	  pointStrokeColor : "#fff",
-      backgroundColor: [
-        '#00E01C', '#8BFF0D', '#FFEA0D', '#FF650D', '#FF0D61'
-      ],
-      label: 'Usage'
-    }
-	],
-    labels: ['1','2', '3', '4', '5']
-  },
-  options: {
-    responsive: true
-  }
-};
-
-window.onload = function() {
-  var ctx = document.getElementById('myChart').getContext('2d');
-  window.myPie = new Chart(ctx, config);
-};
-
-
-// var ctx = document.getElementById('myChart').getContext('2d');
-// window.myPie = new Chart(ctx, config);
-</script>
+<script src="{% static "chart.js" %}"></script>
 {% endblock %}

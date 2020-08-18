@@ -12,7 +12,7 @@ class Role(models.Model):
         return self.name
 
 class StakeHolder(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, limit_choices_to={'staff', True})
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):

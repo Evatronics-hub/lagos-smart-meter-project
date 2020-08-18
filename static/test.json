@@ -1,0 +1,13 @@
+[
+    {
+        "id"    : 1,
+        "name"  : "NEPA",
+        "email" : "nepa@gmail.com",
+        "role"  : "Distribution",
+        "info"  : {
+            "users count"   : 145,
+            "active users"  : 78,
+            "revenue"       : 150932109.30
+        }
+    }
+]

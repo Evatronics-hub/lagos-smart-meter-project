@@ -53,7 +53,7 @@ class Meter(models.Model):
         self._init_balance -= num
 
     def save(self, *args, **kwargs):
-        divisor = self.billings.price_per_unit
+        divisor = self.billing_type.price_per_unit
         num = self.customer_balance
         amount = num / divisor
         self.customer_balance = amount

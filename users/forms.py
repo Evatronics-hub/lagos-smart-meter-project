@@ -1,13 +1,17 @@
 # accounts.forms.py
 from django import forms
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.auth.forms import (
+    ReadOnlyPasswordHashField
+)
 
 from .models import User
 
-
 class RegisterForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
+    name = forms.CharField(label='Username', widget=forms.TextInput(attrs={'class' :'form-control'}))
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class' :'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class' :'form-control'}))
+    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
 
     class Meta:
         model = User
@@ -70,7 +74,4 @@ class UserAdminChangeForm(forms.ModelForm):
         fields = ('email', 'password', 'active', 'admin',)
 
     def clean_password(self):
-        # Regardless of what the user provides, return the initial value.
-        # This is done here, rather than on the field, because the
-        # field does not have access to the initial value
         return self.initial["password"]
