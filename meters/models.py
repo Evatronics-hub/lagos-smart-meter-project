@@ -25,10 +25,10 @@ class Meter(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
     meter_id = models.IntegerField(verbose_name='Meter ID', default=make_card_id, editable=False, primary_key=True)
     meter_token = models.IntegerField(default=make_token, editable=False)
-    customer_balance = models.DecimalField(verbose_name='Customer Balance', max_digits=20, decimal_places=2)
+    customer_balance = models.IntegerField(verbose_name='Customer Balance')
     stake_holder = models.ForeignKey(StakeHolder, on_delete=models.CASCADE, related_name='distributor')
     billing_type = models.ForeignKey(Billing, on_delete=models.SET_NULL, null=True)
-    is_active = models.BooleanField(editable=False, default=True)
+    is_active = models.BooleanField(default=True)
 
     def __init__(self, *args, **kwargs):
         self._init_balance = 0
@@ -52,7 +52,7 @@ class Meter(models.Model):
         self._init_balance = self.customer_balance
         self._init_balance -= num
 
-    def save(self, *args, **kwargs):
+    def pay(self, *args, **kwargs):
         divisor = self.billing_type.price_per_unit
         num = self.customer_balance
         amount = num / divisor

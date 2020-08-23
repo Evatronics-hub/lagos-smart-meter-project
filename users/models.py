@@ -108,3 +108,7 @@ class User(AbstractBaseUser):
     @property
     def is_active(self):
         return self.active
+
+    @property
+    def is_stake_holder(self):
+        return self.stake_holder

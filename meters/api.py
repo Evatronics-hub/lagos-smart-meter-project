@@ -19,14 +19,14 @@ class MeterRetrieveAPIView(generics.RetrieveUpdateAPIView):
     queryset = Meter.objects.all()
     serializer_class = UpdateMeterSerializer
 
-class MeterTypeAPIView(generics.ListCreateAPIView):
+class BillingAPIView(generics.ListCreateAPIView):
     queryset = Billing.objects.all()
     serializer_class = BillingSerializer
     # permission_classes = [
     #     permissions.IsAdminUser
     # ]
 
-class MeterTypeRetrieveAPIView(generics.RetrieveUpdateAPIView):
+class BillingRetrieveAPIView(generics.RetrieveUpdateAPIView):
     queryset = Billing.objects.all()
     serializer_class = BillingSerializer
     # permission_classes = [

@@ -2,5 +2,7 @@ db.sqlite3
 */*/__pycache__/
 */__pycache__/
 */migrations/__pycache__/
-*/migrations/0*
+# */migrations/0*
 .vscode/
+Vagrantfile
+.vagrant/

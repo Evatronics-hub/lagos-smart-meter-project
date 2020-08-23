@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 m-auto">
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="text-center lead mb-2">Stake Holder Registration</div>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="row">
+                            <button type="submit" class="col-3 m-auto btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -14,7 +14,7 @@ SECRET_KEY = 'w*$bno4&uc1m)a2d!zogt!av3s6(4q4md$!uu9)0c2pd^&8tb2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.4', 'localhost']
 AUTH_USER_MODEL = 'users.User'
 # USER_MODEL_SERIALIZER = 'users.serializers.UserSerializer'
 # USER_REGISER_SERIALIZER = 'users.serializers.RegisterSerializer'
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'frontend',
     'iot',
     'websockets',
-    'meters',
+    'meters.apps.MetersConfig',
     'users',
 ]
 
@@ -81,10 +81,29 @@ REST_FRAMEWORK = {
     ('knox.auth.TokenAuthentication', )
 }
 
+REDIS_HOST = 'localhost'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+# DATABASES = {
+#  'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'test',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Damian',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -92,9 +111,6 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {

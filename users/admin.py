@@ -67,7 +67,7 @@ class StakeHolderAdmin(admin.ModelAdmin):
         return obj.user.name
 
 
-admin.site.register(User, UserAdmin)
+# admin.site.register(User, UserAdmin)
 # admin.site.register(StakeHolder)
 admin.site.register(Role)
 

@@ -11,14 +11,6 @@ from django.shortcuts import (
 
 from .forms import StaffForm
 
-# def login(request):
-#     ''' This will login a user then make the user a staff '''
-#     context = {
-#         'form' : StaffForm
-#     }
-
-#     return render(request, 'staff/login.html', context)
-
 def register(request):
     ''' This will register a normal a user '''
     if request.method == 'POST':
@@ -29,4 +21,4 @@ def register(request):
             return HttpResponseRedirect(reverse('dashboard'))
     else:
         form = StaffForm
-    return render(request, 'staff/login.html', {'form': form})
+    return render(request, 'auth/staff/signup.html', {'form': form})

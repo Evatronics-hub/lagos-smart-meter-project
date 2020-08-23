@@ -24,7 +24,7 @@ class MeterAdmin(admin.ModelAdmin):
         num = obj.billings
         return METER_TIER[num][1]
 
-# @admin.register(Billing)
+@admin.register(Billing)
 class MeterTypeAdmin(admin.ModelAdmin):
     list_display = ('name', 'price_per_unit', 'users')
 

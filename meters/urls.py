@@ -4,7 +4,7 @@ from rest_framework.schemas import get_schema_view
 
 from .api import (
     MeterAPIView, MeterRetrieveAPIView,
-    MeterTypeAPIView, MeterTypeRetrieveAPIView
+    BillingAPIView, BillingRetrieveAPIView
 
 )
 
@@ -16,6 +16,6 @@ urlpatterns = [
     path('docs/', docs_urls),
     path('meters', MeterAPIView.as_view()),
     path('meters/<int:pk>', MeterRetrieveAPIView.as_view()),
-    path('metertypes', MeterTypeAPIView.as_view()),
-    path('metertypes/<int:pk>', MeterTypeRetrieveAPIView.as_view()),
+    path('billing', BillingAPIView.as_view()),
+    path('billing/<int:pk>', BillingRetrieveAPIView.as_view()),
 ]

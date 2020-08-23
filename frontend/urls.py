@@ -1,12 +1,13 @@
 from django.urls import path, include
 from django.views.generic import TemplateView
+from .views import dashboard
 from .auth import (
     user, staff
 )
 
 user_auth_patterns = [
-    path('login/', user.login),
-    path('register/', user.register),
+    path('login/', user.login, name='login'),
+    path('register/', user.register, name='register'),
 ]
 
 staff_auth_patterns = [
@@ -14,8 +15,8 @@ staff_auth_patterns = [
 ]
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='index.html')),
-    path('dashboard', user.dashboard, name='dashboard'),
+    path('', TemplateView.as_view(template_name='index.html'), name='home'),
+    path('dashboard', dashboard, name='dashboard'),
     path('accounts/staff/', include(staff_auth_patterns)),
     path('accounts/', include(user_auth_patterns)),
 ]

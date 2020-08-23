@@ -2,9 +2,10 @@ from django import forms
 from django.contrib.auth import get_user_model
 
 class StaffForm(forms.ModelForm):
-
-    password = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
+    name = forms.CharField(label='Username', widget=forms.TextInput(attrs={'class' :'form-control'}))
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class' :'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class' :'form-control'}))
+    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = get_user_model()
