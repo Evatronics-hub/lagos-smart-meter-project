@@ -8,6 +8,7 @@ from .auth import (
 user_auth_patterns = [
     path('login/', user.login, name='login'),
     path('register/', user.register, name='register'),
+    path('meters/', user.meter, name='register_meter')
 ]
 
 staff_auth_patterns = [

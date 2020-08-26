@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from users.staff import StakeHolder
+from .helpers import get_or_create_redis
 
 # Create your models here.
 def make_card_id():
@@ -25,7 +26,7 @@ class Meter(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
     meter_id = models.IntegerField(verbose_name='Meter ID', default=make_card_id, editable=False, primary_key=True)
     meter_token = models.IntegerField(default=make_token, editable=False)
-    customer_balance = models.IntegerField(verbose_name='Customer Balance')
+    customer_balance = models.DecimalField(verbose_name='Customer Balance', max_digits=100, decimal_places=2, null=True)
     stake_holder = models.ForeignKey(StakeHolder, on_delete=models.CASCADE, related_name='distributor')
     billing_type = models.ForeignKey(Billing, on_delete=models.SET_NULL, null=True)
     is_active = models.BooleanField(default=True)
@@ -51,6 +52,13 @@ class Meter(models.Model):
     def balance(self, num):
         self._init_balance = self.customer_balance
         self._init_balance -= num
+
+    @property
+    def last_transactions(self):
+        db = settings.DB
+        print(self.user.name)
+        return get_or_create_redis(self.user.name, db)
+
 
     def pay(self, *args, **kwargs):
         divisor = self.billing_type.price_per_unit

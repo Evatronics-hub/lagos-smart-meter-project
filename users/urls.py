@@ -4,6 +4,7 @@ from .api import (
     UserDetailAPI,
     UserListAPI,
     LoginAPI,
+    StakeHolderAPI
 )
 
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
     path('login', LoginAPI.as_view()),
     path('users', UserListAPI.as_view()),
     path('users/<int:pk>', UserDetailAPI.as_view()),
+    path('stakeholders', StakeHolderAPI.as_view()),
 ]

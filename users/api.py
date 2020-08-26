@@ -5,10 +5,12 @@ from users.serializers import UserSerializer
 from knox.models import AuthToken 
 from django.conf import settings
 from users.models import User
+from users.staff import StakeHolder
 from users.serializers import (
     LoginSerializer,
     RegisterSerializer,
-    UserSerializer
+    UserSerializer,
+    StakeHolderSerializer
 )
 
 # Create your views here.
@@ -43,7 +45,7 @@ class UserRegisterAPI(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         return Response({
-            'user' : self.serializer_class(user, context=self.get_serializer_context()).data ,
+            'user' : self.serializer_class(user, context=self.get_serializer_context()).data,
             'token' : AuthToken.objects.create(user)[1]
         })
 
@@ -56,6 +58,12 @@ class LoginAPI(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data
         return Response({
-            'user' : UserSerializer(user, context=self.get_serializer_context()).data ,
+            'user' : UserSerializer(user, context=self.get_serializer_context()).data,
             'token' : AuthToken.objects.create(user)[1]
         })
+
+class StakeHolderAPI(generics.ListAPIView):
+    name = 'Stake Holders List'
+    description = 'Hello World'
+    serializer_class = StakeHolderSerializer
+    queryset = StakeHolder.objects.all()

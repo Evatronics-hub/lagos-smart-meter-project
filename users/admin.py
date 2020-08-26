@@ -60,14 +60,14 @@ class UserAdmin(BaseUserAdmin):
 
 @admin.register(StakeHolder)
 class StakeHolderAdmin(admin.ModelAdmin):
-    list_display = ('name', 'role', 'users')
+    list_display = ('name', 'users')
     list_filter = ('role',)
 
     def name(self, obj):
         return obj.user.name
 
 
-# admin.site.register(User, UserAdmin)
+admin.site.register(User, UserAdmin)
 # admin.site.register(StakeHolder)
 admin.site.register(Role)
 

@@ -32,9 +32,10 @@ socket.onclose = (e) => {
   console.log('Disconnected', e)
 }
 
-socket.onmessage = function(e) {
-    var data = JSON.parse(e.data)
-    config.data.datasets[0].data = data
+socket.onmessage = (e) => {
+    result = JSON.parse(e.data)
+    config.data.datasets[0].data = result.data
+    config.data.labels = result.time
     myPie.update()
 }
 

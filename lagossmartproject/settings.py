@@ -1,5 +1,6 @@
-from pathlib import Path
 import os
+from pathlib import Path
+from redis import Redis
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -82,6 +83,7 @@ REST_FRAMEWORK = {
 }
 
 REDIS_HOST = 'localhost'
+DB = Redis(host=REDIS_HOST)
 
 CHANNEL_LAYERS = {
     "default": {
@@ -148,7 +150,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-print(os.path.join(BASE_DIR, 'static'))
 STATICFILES_DIRS = (
     ('front', '%s/static' % (BASE_DIR))
 )

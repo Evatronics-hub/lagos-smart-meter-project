@@ -1,37 +1,34 @@
-{% extends 'base.html' %}
+{% extends 'card.html' %}
 {% load static %}
-{% block content %}
-<!-- <h3 class="text-center mb-3">Hello World</h3> -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 m-auto">
-            <div class="card mb-3">
-              <div class="card-body">
-                <div class="text-center lead mb-2">Dashboard</div>
-                <canvas id="myChart" height="150"></canvas>
-                <div class="row">
-                  <div class="col-6">
-                    <p class="text-center">Account Balance</p>
-                    <div class="alert alert-secondary text-center" role="alert">
-                      {{ balance }}
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <p class="text-center">Billing Type</p>
-                    <div class="alert alert-secondary text-center" role="alert">
-                      {{ billing_type }}
-                    </div>
-                </div>
-              </div>
-            </div>
-        </div>
+
+{% block title %} Dashboard {% endblock title %}
+
+{% block body %}
+<canvas id="myChart" height="150"></canvas>
+<div class="row">
+  <div class="col-6">
+    <p class="text-center">Account Balance</p>
+    <div class="alert alert-secondary text-center" role="alert">
+      {{ balance }}
     </div>
+  </div>
+  <div class="col-6">
+    <p class="text-center">Billing Type</p>
+    <div class="alert alert-secondary text-center" role="alert">
+      {{ billing_type }}
+    </div>
+  </div
 </div>
-{% endblock %}
+<div class="row">
+  <button type="button"  onclick="pay()" class="col-6 m-auto btn btn-primary">Pay Now</button>
+</div>
+{% endblock body %}
 
 {% block script %}
 <script src="{% static "chart.js" %}"></script>
 <script>
-
+  function pay() {
+    window.location = `http://localhost:5000/pay/lagos+smart+project/5755?next="${window.location.href}" `
+  }
 </script>
 {% endblock %}

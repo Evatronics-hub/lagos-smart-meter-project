@@ -19,6 +19,7 @@ class MeterRetrieveAPIView(generics.RetrieveUpdateAPIView):
     queryset = Meter.objects.all()
     serializer_class = UpdateMeterSerializer
 
+
 class BillingAPIView(generics.ListCreateAPIView):
     queryset = Billing.objects.all()
     serializer_class = BillingSerializer

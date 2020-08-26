@@ -7,7 +7,7 @@ admin.site.site_header = "Lagos Smart Project"
 admin.site.site_title = "Admin"
 admin.site.index_title = "Site Admin"
 
-# @admin.register(Meter)
+@admin.register(Meter)
 class MeterAdmin(admin.ModelAdmin):
     # add_form_template = MeterChangeForm
     list_display = ('customer_name', 'meter_id', 'customer_balance', 'billing_type')

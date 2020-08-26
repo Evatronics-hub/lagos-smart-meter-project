@@ -1,0 +1,12 @@
+{% extends 'card.html' %}
+{% block title %}
+Meter
+{% endblock title %}
+Meter
+{% block body %}
+<form method="post">
+    {{ form.as_p }}
+    <button type="submit">Continue</button>
+    {% csrf_token %}
+</form>
+{% endblock body %}

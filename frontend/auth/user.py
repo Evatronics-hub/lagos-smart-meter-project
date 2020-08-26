@@ -7,6 +7,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 
 from users.forms import RegisterForm
+from .forms import MeterForm
+
+
+@login_required
+def dashboard(request):
+    return render(request, 'index.html')
+
 
 def login(request):
     context = {}
@@ -35,11 +42,20 @@ def register(request):
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('register_meter'))
     else:
         form = RegisterForm
     return render(request, 'auth/signup.html', {'form': form})
 
-@login_required
-def dashboard(request):
-    return render(request, 'index.html')
+
+def meter(request):
+    ''' This will create assist the user to create a meter '''
+    if request.method == 'POST':
+        form = MeterForm(request.POST)
+        if form.is_valid():
+            form.instance.user = request.user
+            form.save()
+            return HttpResponseRedirect('/')
+    form = MeterForm
+    context = dict(form=form, error=dict(message='An error occured'))
+    return render(request, 'meter.html', context)

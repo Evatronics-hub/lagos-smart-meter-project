@@ -4,7 +4,7 @@ import random
 
 class PushList:
     def __init__(self, data=None, **kwargs):
-        self.type = kwargs.get('type', int)
+        self.type = kwargs.get('type', str)
         if not data:
             self.size = kwargs.get('size', 4)
             self.data = [0 for _ in range(self.size)]
@@ -35,7 +35,7 @@ def get_or_create_redis(key, db):
         db.rpush(key, *result)
         return result
     else:
-        return [int(x.decode()) for x in data]
+        return [int(float(x.decode())) for x in data]
 
 data = {
     'time' : ['5am', '6am', '7am', '8am' '9am'],

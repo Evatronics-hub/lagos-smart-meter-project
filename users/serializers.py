@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 from .models import User
+from .staff import StakeHolder
 
 class UserSerializer(ModelSerializer):
     class Meta:
@@ -46,3 +47,9 @@ class LoginSerializer(serializers.Serializer):
         if user:
             return user
         raise serializers.ValidationError('Incorrect credentials. Try again')
+
+
+class StakeHolderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StakeHolder
+        fields = ('name', 'connected_meters', 'total_revenue', 'roles')

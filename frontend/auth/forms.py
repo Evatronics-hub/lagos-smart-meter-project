@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth import get_user_model
 
+from meters.models import Meter
+
 class StaffForm(forms.ModelForm):
     name = forms.CharField(label='Username', widget=forms.TextInput(attrs={'class' :'form-control'}))
     email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class' :'form-control'}))
@@ -34,3 +36,10 @@ class StaffForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class MeterForm(forms.ModelForm):
+
+    class Meta:
+        model = Meter
+        fields = ['stake_holder', 'billing_type']
